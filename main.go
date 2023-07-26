@@ -121,6 +121,7 @@ func main() {
 				break
 			}
 		}
+		t, _ := time.Parse(time.RFC3339, v.Price.LineOffers[0].AppliedRules[0].EndDate)
 		shanghai := t.Add(8 * time.Hour)
 		text += fmt.Sprintf("![](%s)\n**<center>%s</center>**\n简介：%s\n\n结束时间：%s\n\n领取地址：https://store.epicgames.com/zh-CN/p/%s\n\n", imageUrl, v.Title, v.Description, shanghai.Format(time.DateTime), v.ProductSlug)
 	}
