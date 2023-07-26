@@ -121,8 +121,8 @@ func main() {
 				break
 			}
 		}
-		t, _ := time.Parse(time.RFC3339, v.Price.LineOffers[0].AppliedRules[0].EndDate)
-		text += fmt.Sprintf("![](%s)\n**<center>%s</center>**\n>##### 游戏简介\n> %s\n>##### 结束时间\n> %s\n>##### 领取地址\n> https://store.epicgames.com/zh-CN/p/%s\n\n", imageUrl, v.Title, v.Description, t.Format(time.DateTime), v.ProductSlug)
+		shanghai := t.Add(8 * time.Hour)
+		text += fmt.Sprintf("![](%s)\n**<center>%s</center>**\n简介：%s\n\n结束时间：%s\n\n领取地址：https://store.epicgames.com/zh-CN/p/%s\n\n", imageUrl, v.Title, v.Description, shanghai.Format(time.DateTime), v.ProductSlug)
 	}
 	resp, err := wxPusher.Send(c.AppToken, text, "EPIC本周免费游戏推送", 3, c.TopicIds, c.Uids)
 	if err != nil {
